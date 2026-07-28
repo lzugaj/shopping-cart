@@ -130,3 +130,17 @@ The project includes a GitHub Actions workflow that automatically:
 - generates Jacoco coverage reports
 
 The workflow is triggered on pull requests and pushes to the main branch.
+
+## Security Checks
+
+OWASP Dependency Check is used to scan project dependencies for known vulnerabilities.
+
+Run locally:
+
+```shell
+./gradlew dependencyCheckAnalyze
+```
+
+The generated report is available at:
+
+`build/reports/dependency-check`

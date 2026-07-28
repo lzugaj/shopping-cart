@@ -29,6 +29,11 @@ jobs:
       
       - name: Integration tests
         run: ./gradlew integrationTest
+        
+      - name: OWASP Dependency Check
+        run: ./gradlew clean dependencyCheckAnalyze --rerun-tasks
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
       
       - name: Generate JaCoCo report
         run: ./gradlew jacocoTestReport
