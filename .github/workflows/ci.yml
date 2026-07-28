@@ -24,11 +24,8 @@ jobs:
           distribution: 'temurin'
           cache: gradle
       
-      - name: Unit tests
-        run: ./gradlew test
-      
-      - name: Integration tests
-        run: ./gradlew integrationTest
+      - name: Tests
+        run: ./gradlew test integrationTest
         
 # Very slow despite provided API key inside secrets
 #      - name: OWASP Dependency Check

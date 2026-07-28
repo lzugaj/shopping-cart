@@ -48,14 +48,22 @@ tasks.register('integrationTest', Test) {
     description = 'Runs integration tests'
     group = 'verification'
 
+    useJUnitPlatform {
+        includeTags("integration")
+    }
+
     testClassesDirs = sourceSets.test.output.classesDirs
     classpath = sourceSets.test.runtimeClasspath
 
-    useJUnitPlatform {
-        includeTags 'integration'
-    }
+    shouldRunAfter(tasks.test)
 
-    shouldRunAfter test
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+tasks.named("check") {
+    dependsOn(tasks.named("integrationTest"))
 }
 
 jacoco {
@@ -63,7 +71,7 @@ jacoco {
 }
 
 tasks.jacocoTestReport {
-    dependsOn(tasks.test)
+    dependsOn(tasks.test, tasks.integrationTest)
 
     reports {
         xml.required.set(true)

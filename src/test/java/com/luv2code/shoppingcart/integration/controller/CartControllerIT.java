@@ -2,6 +2,7 @@ package com.luv2code.shoppingcart.integration.controller;
 
 import com.luv2code.shoppingcart.integration.IntegrationTest;
 import com.luv2code.shoppingcart.model.Action;
+import com.luv2code.shoppingcart.model.Cart;
 import com.luv2code.shoppingcart.model.Price;
 import com.luv2code.shoppingcart.model.PriceType;
 import com.luv2code.shoppingcart.model.RecurrenceUnit;
@@ -107,9 +108,8 @@ class CartControllerIT {
 
         assertThat(cartRepository.findByCustomerId(CUSTOMER_ID))
                 .get()
-                .extracting(cart -> cart.getItems())
-                .asList()
-                .isEmpty();
+                .extracting(Cart::getItems)
+                .isEqualTo(List.of());
     }
 
     @Test
