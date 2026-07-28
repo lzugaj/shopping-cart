@@ -120,3 +120,13 @@ http://localhost:8080/swagger-ui/index.html
 OpenAPI specification:
 
 http://localhost:8080/v3/api-docs
+
+## CI/CD
+
+The project includes a GitHub Actions workflow that automatically:
+
+- builds the application
+- runs unit and integration tests
+- generates Jacoco coverage reports
+
+The workflow is triggered on pull requests and pushes to the main branch.

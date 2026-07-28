@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+      
+      - name: Run tests
+        run: ./gradlew test
+      
+      - name: Generate Jacoco report
+        run: ./gradlew jacocoTestReport
+      
+      - name: Build application
+        run: ./gradlew build
