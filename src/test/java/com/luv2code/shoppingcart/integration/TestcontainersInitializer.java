@@ -9,8 +9,7 @@ import org.testcontainers.mongodb.MongoDBContainer;
 class TestcontainersInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
     static MongoDBContainer mongo =
-            new MongoDBContainer("mongo:latest")
-                    .withReuse(true);
+            new MongoDBContainer("mongo:latest");
 
     static {
         Startables.deepStart(mongo).join();
