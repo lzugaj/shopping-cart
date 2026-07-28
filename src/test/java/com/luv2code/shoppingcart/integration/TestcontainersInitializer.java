@@ -16,14 +16,8 @@ public class TestcontainersInitializer implements ApplicationContextInitializer<
 
     @Override
     public void initialize(ConfigurableApplicationContext ctx) {
-        String uri = mongo.getReplicaSetUrl();
-
-        System.out.println("========== Mongo URI ==========");
-        System.out.println(uri);
-        System.out.println("===============================");
-
         TestPropertyValues.of(
-                "spring.data.mongodb.uri=" + mongo.getReplicaSetUrl()
+                "spring.data.mongodb.uri=" + mongo.getConnectionString()
         ).applyTo(ctx.getEnvironment());
     }
 }
