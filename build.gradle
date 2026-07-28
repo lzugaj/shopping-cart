@@ -71,7 +71,7 @@ jacoco {
 }
 
 tasks.jacocoTestReport {
-    dependsOn(tasks.test, tasks.integrationTest)
+    dependsOn(tasks.test)
 
     reports {
         xml.required.set(true)
