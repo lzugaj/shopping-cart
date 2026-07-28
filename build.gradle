@@ -1,0 +1,68 @@
+plugins {
+    alias(libs.plugins.java)
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+    alias(libs.plugins.lombok)
+    alias(libs.plugins.jacoco)
+}
+
+group = 'com.luv2code'
+version = '0.0.1-SNAPSHOT'
+description = 'shopping-cart'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(libs.spring.boot.web)
+    implementation(libs.spring.boot.validation)
+    implementation(libs.spring.boot.mongodb)
+
+    implementation(libs.swagger)
+
+    developmentOnly(libs.spring.boot.docker.compose)
+
+    testImplementation(libs.spring.boot.test)
+    testImplementation(libs.spring.boot.mongodb.test)
+    testImplementation(libs.spring.boot.webmvc.test)
+    testImplementation(libs.spring.boot.webtestclient)
+    testImplementation(libs.spring.boot.testcontainers)
+    testImplementation(libs.testcontainers.mongodb)
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+jacoco {
+    toolVersion = "0.8.14"
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "**/com/luv2code/shoppingcart/rest/dto/**",
+                    "**/com/luv2code/shoppingcart/config/**",
+                    "**/com/luv2code/shoppingcart/rest/handler/**",
+                    "**/com/luv2code/shoppingcart/rest/handler/ShoppingCartExceptionHandler*",
+                    "**/com/luv2code/shoppingcart/util/**",
+                    "**/com/luv2code/shoppingcart/ShoppingCartApplication*",
+            ])
+        }))
+    }
+}

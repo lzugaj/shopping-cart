@@ -1,0 +1,246 @@
+{
+  "info": {
+    "_postman_id": "23498419-9aae-4b00-9e8d-9e2b72041634",
+    "name": "Shopping Cart API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "6741410"
+  },
+  "item": [
+    {
+      "name": "Get Cart",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/carts/customer-001",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts",
+            "customer-001"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add Recurring Item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"item-001\",\n  \"offerId\": \"MOBILE_L\",\n  \"action\": \"ADD\",\n  \"prices\": [\n    {\n      \"type\": \"RECURRING\",\n      \"amount\": 24.99,\n      \"currency\": \"EUR\",\n      \"recurrences\": 24,\n      \"recurrenceUnit\": \"MONTH\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/carts/customer-001/items",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts",
+            "customer-001",
+            "items"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add One Time Item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"item-002\",\n  \"offerId\": \"ROUTER_PRO\",\n  \"action\": \"ADD\",\n  \"prices\": [\n    {\n      \"type\": \"ONE_TIME\",\n      \"amount\": 79.99,\n      \"currency\": \"EUR\",\n      \"recurrences\": null,\n      \"recurrenceUnit\": null\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/carts/customer-001/items",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts",
+            "customer-001",
+            "items"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add Modify Item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"item-003\",\n  \"offerId\": \"MOBILE_XL\",\n  \"action\": \"MODIFY\",\n  \"prices\": [\n    {\n      \"type\": \"RECURRING\",\n      \"amount\": 34.99,\n      \"currency\": \"EUR\",\n      \"recurrences\": 12,\n      \"recurrenceUnit\": \"MONTH\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/carts/customer-001/items",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts",
+            "customer-001",
+            "items"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove Item",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/carts/customer-001/items/item-001",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts",
+            "customer-001",
+            "items",
+            "item-001"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Evict Cart",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/carts/customer-002",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts",
+            "customer-002"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Offer Statistics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/statistics/offers/MOBILE_L?action=ADD&from=2026-07-01T00:00:00&to=2026-07-31T23:59:59",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "statistics",
+            "offers",
+            "MOBILE_L"
+          ],
+          "query": [
+            {
+              "key": "action",
+              "value": "ADD"
+            },
+            {
+              "key": "from",
+              "value": "2026-07-01T00:00:00"
+            },
+            {
+              "key": "to",
+              "value": "2026-07-31T23:59:59"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Delete Statistics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/statistics/offers/MOBILE_L?action=DELETE&from=2026-07-01T00:00:00&to=2026-07-31T23:59:59",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "statistics",
+            "offers",
+            "MOBILE_L"
+          ],
+          "query": [
+            {
+              "key": "action",
+              "value": "DELETE"
+            },
+            {
+              "key": "from",
+              "value": "2026-07-01T00:00:00"
+            },
+            {
+              "key": "to",
+              "value": "2026-07-31T23:59:59"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api/v1"
+    }
+  ]
+}

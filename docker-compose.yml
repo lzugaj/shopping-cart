@@ -1,0 +1,16 @@
+services:
+  mongo:
+    container_name: shopping_cart_db
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: shopping_cart
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

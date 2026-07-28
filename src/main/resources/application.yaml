@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: shopping-cart
+  mongodb:
+    uri: mongodb://mongo:password@localhost:27017/shopping_cart?authSource=admin
